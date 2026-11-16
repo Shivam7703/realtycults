@@ -34,7 +34,7 @@ interface Slide {
 }
 
 /* Tip: load "Plus Jakarta Sans" or "Urbanist" with next/font and apply it
-   to the page body so the headline gets the same geometric feel as RealityCults. */
+   to the page body so the headline gets the same geometric feel as RealtyCults. */
 
 const slides: Slide[] = [
   {

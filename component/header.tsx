@@ -46,14 +46,14 @@ const PHONE_HREF = "tel:+91123678900";
 /*  Small pieces                                                       */
 /* ------------------------------------------------------------------ */
 const Logo: React.FC = () => (
-  <Link href="/" className="group flex items-center gap-2.5" aria-label="RealityCults home">
+  <Link href="/" className="group flex items-center gap-2.5" aria-label="RealtyCults home">
     <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="text-amber-600">
       <path d="M16 3 4 9.5 16 16l12-6.5L16 3Z" fill="currentColor" />
       <path d="M4 15.5 16 22l12-6.5" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" />
       <path d="M4 21.5 16 28l12-6.5" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" opacity=".55" />
     </svg>
     <span className="text-[28px] font-semibold tracking-tight text-white transition-transform duration-500 group-hover:translate-x-0.5">
-      RealityCults
+      RealtyCults
     </span>
   </Link>
 );
@@ -163,8 +163,8 @@ const Header: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: EASE }}
         className={`fixed inset-x-0 top-0 z-50 border-b text-white transition-all duration-500 ${solid
-            ? "border-white/10 bg-neutral-950/80 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl"
-            : "border-transparent bg-transparent"
+          ? "border-white/10 bg-neutral-950/80 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+          : "border-transparent bg-transparent"
           }`}
       >
         <div
