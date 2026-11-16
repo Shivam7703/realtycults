@@ -1,8 +1,7 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Autoplay, Keyboard } from "swiper/modules";
 import { MotionConfig, motion, type Variants } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -228,6 +227,17 @@ const NavButton: React.FC<{ label: string; onClick: () => void; children: React.
 /* ------------------------------------------------------------------ */
 const Testimonials: React.FC = () => {
   const swiperRef = useRef<SwiperType | null>(null);
+  const [paused, setPaused] = useState(false);
+
+  /* Autoplay, keyboard and a11y are done by hand instead of with Swiper's Autoplay, Keyboard and
+     A11y modules: Swiper runs those modules while the page is prerendered and they read `new Date()`,
+     which Cache Components rejects. Autoplay pauses while hovered or focused. */
+  useEffect(() => {
+    if (paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => swiperRef.current?.slideNext(), 5000);
+    return () => window.clearInterval(id);
+  }, [paused]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -304,16 +314,23 @@ const Testimonials: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Client reviews"
+            onKeyDown={(e) => {
+              if (e.key === "ArrowLeft") swiperRef.current?.slidePrev();
+              if (e.key === "ArrowRight") swiperRef.current?.slideNext();
+            }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={() => setPaused(false)}
             className="mt-14 lg:mt-16"
           >
             <Swiper
-              modules={[Autoplay, Keyboard, A11y]}
               loop
               speed={800}
               grabCursor
-              keyboard={{ enabled: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-              a11y={{ prevSlideMessage: "Previous review", nextSlideMessage: "Next review" }}
               breakpoints={{
                 0: { slidesPerView: 1.08, spaceBetween: 16 },
                 768: { slidesPerView: 2, spaceBetween: 20 },

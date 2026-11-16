@@ -1,8 +1,33 @@
 import { NextResponse } from "next/server";
 import nodemailer, { type Transporter } from "nodemailer";
 
-export const runtime = "nodejs"; // nodemailer needs Node, not the Edge runtime
+/**
+ * POST /api/contact
+ * Put this file at: app/api/contact/route.ts  (or src/app/api/contact/route.ts)
+ *
+ * Install:   npm install nodemailer
+ *            npm install -D @types/nodemailer
+ *
+ * Add to .env.local (then restart `npm run dev`):
+ *
+ *   SMTP_HOST=smtp.gmail.com
+ *   SMTP_PORT=465
+ *   SMTP_USER=yourname@gmail.com
+ *   SMTP_PASS=your-16-char-app-password
+ *   CONTACT_TO_EMAIL=where-enquiries-should-arrive@yourcompany.com
+ *   CONTACT_FROM_NAME="Website Enquiry"        (optional)
+ *
+ * Gmail: turn on 2-Step Verification, then create an "App password"
+ * (Google Account > Security > App passwords). Use that, NOT your normal password.
+ * Gmail always sends from the SMTP_USER address, so replies go to the customer via Reply-To.
+ *
+ * Note: no `export const runtime` here. With cacheComponents enabled, Next.js rejects that
+ * setting, and route handlers already run on Node.js by default, which nodemailer needs.
+ */
 
+/* ---- tiny in-memory rate limit: 5 requests / 10 minutes per IP ----
+   Good enough to stop casual spam. On serverless hosts each instance has its own memory,
+   so use Upstash Redis or similar if you need a strict limit. */
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const hits = new Map<string, number[]>();

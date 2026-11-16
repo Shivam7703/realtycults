@@ -12,7 +12,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { EffectFade } from "swiper/modules";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 import "swiper/css";
@@ -139,6 +139,14 @@ const Banner: React.FC = () => {
   const slide = slides[active];
   const next = slides[(active + 1) % slides.length];
 
+  /* Autoplay without Swiper's Autoplay module: that module reads `new Date()` while the page is
+     prerendered, which Cache Components rejects. One timer per slide keeps the progress bar in sync. */
+  useEffect(() => {
+    if (reduce) return;
+    const t = window.setTimeout(() => swiperRef.current?.slideNext(), AUTOPLAY_MS);
+    return () => window.clearTimeout(t);
+  }, [active, reduce]);
+
   /* Mouse parallax on the background (desktop only, off if reduced motion) */
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -162,13 +170,12 @@ const Banner: React.FC = () => {
       {/* ---------- Background slider ---------- */}
       <motion.div style={{ x: bgX, y: bgY }} className="absolute -inset-6">
         <Swiper
-          modules={[Autoplay, EffectFade]}
+          modules={[EffectFade]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop
           speed={1400}
           allowTouchMove
-          autoplay={{ delay: AUTOPLAY_MS, disableOnInteraction: false }}
           onSwiper={(s) => {
             swiperRef.current = s;
           }}
