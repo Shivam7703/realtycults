@@ -1,72 +1,72 @@
 "use client";
 import React from "react";
 import { MotionConfig, motion, type Variants } from "framer-motion";
+import {
+  FaHome,
+  FaSeedling,
+  FaHandshake,
+  FaChartLine,
+  FaSearchLocation,
+  FaRoute,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
 
-/* ------------------------------------------------------------------ */
-/*  Content (edit copy, order and icons here)                          */
-/* ------------------------------------------------------------------ */
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 interface Service {
   title: string;
   description: string;
-  /** SVG path data, drawn on a 48x48 grid */
-  icon: string[];
+  icon: IconType;
 }
 
 const services: Service[] = [
   {
-    title: "Architectural Design",
+    title: "Residential Property Solutions",
     description:
-      "Dream it, we'll design it! From big picture layouts to the tiniest details, our architectural magic brings your ideas to life with creativity and precision.",
-    icon: [
-      "M4 22V4h18v18H4Z M4 22 22 4",
-      "M26 4h18v18H26Z M26 4a18 18 0 0 1 18 18",
-      "M4 26h18v18H4Z M22 26a18 18 0 0 1-18 18",
-      "M26 26h18v18H26Z M26 44 44 26",
-    ],
+      "Find a place that matches your plans! We help you explore residential plots and property opportunities that align with your location preferences, budget and future goals.",
+    icon: FaHome,
   },
   {
-    title: "Interior Design & Planning",
+    title: "Agricultural Land Opportunities",
     description:
-      "Make your space shine! Our team creates inviting, beautiful interiors that reflect your style and make every room a favorite place to be.",
-    icon: [
-      "M4 6a18 18 0 0 1 0 36Z",
-      "M4 14a10 10 0 0 1 0 20Z",
-      "M26 6a18 18 0 0 1 0 36Z",
-      "M26 14a10 10 0 0 1 0 20Z",
-    ],
+      "Invest in possibilities beyond residential spaces. We assist buyers in identifying agricultural land opportunities for farming, land ownership and long-term investment planning.",
+    icon: FaSeedling,
   },
   {
-    title: "Consulting Services",
+    title: "Property Buying & Selling",
     description:
-      "Consider us your design whisperers! We provide expert advice to help your project sparkle with creativity, efficiency, and spot-on solutions.",
-    icon: [
-      "M4 4h20v20L4 4Z",
-      "M44 4v20H24L44 4Z",
-      "M44 44H24V24l20 20Z",
-      "M4 44V24h20L4 44Z",
-    ],
+      "Looking to buy or sell a property? We help connect buyers and sellers while providing guidance throughout the property transaction process.",
+    icon: FaHandshake,
   },
   {
-    title: "Project Management",
+    title: "Real Estate Investment Consulting",
     description:
-      "We handle the hustle! From start to finish, we keep your project on track, on budget, and stress-free, so you can sit back and watch the magic happen.",
-    icon: [
-      "M6 14a18 9 0 0 1 36 0Z",
-      "M6 22a18 9 0 0 0 36 0Z",
-      "M10 28a14 7 0 0 0 28 0Z",
-    ],
+      "Make informed property investment decisions! Our team helps you evaluate locations, property options, pricing and investment potential to support your real estate goals.",
+    icon: FaChartLine,
+  },
+  {
+    title: "Property Search & Shortlisting",
+    description:
+      "Finding the right property takes the right approach. We help you shortlist suitable options based on your requirements, preferred location and budget.",
+    icon: FaSearchLocation,
+  },
+  {
+    title: "End-to-End Property Assistance",
+    description:
+      "From the initial enquiry to the next steps in your property journey, we aim to make the process more organised with dedicated assistance and guidance.",
+    icon: FaRoute,
   },
 ];
 
 const headingWords: { text: string; accent?: boolean }[] = [
-  { text: "Experience" },
-  { text: "The", accent: true },
-  { text: "Art", accent: true },
-  { text: "Of", accent: true },
-  { text: "Interior", accent: true },
-  { text: "Design" },
+  { text: "Your" },
+  { text: "Property", accent: true },
+  { text: "Journey", accent: true },
+  { text: "Starts" },
+  { text: "With" },
+  { text: "The" },
+  { text: "Right" },
+  { text: "Guidance" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -97,33 +97,27 @@ const card: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
-const iconPath: Variants = {
-  hidden: { pathLength: 0, opacity: 0 },
-  show: { pathLength: 1, opacity: 1, transition: { duration: 1.4, ease: "easeInOut" } },
+const iconReveal: Variants = {
+  hidden: { opacity: 0, scale: 0.6, rotate: -12 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.9, ease: EASE },
+  },
 };
 
 /* ------------------------------------------------------------------ */
 /*  Pieces                                                             */
 /* ------------------------------------------------------------------ */
-const LineIcon: React.FC<{ paths: string[] }> = ({ paths }) => (
-  <svg
-    viewBox="0 0 48 48"
-    fill="none"
+const CardIcon: React.FC<{ icon: IconType }> = ({ icon: Icon }) => (
+  <motion.span
+    variants={iconReveal}
     aria-hidden="true"
-    className="h-12 w-12 shrink-0 text-amber-600 transition-transform duration-700 ease-out group-hover:rotate-[8deg] group-hover:scale-110"
+    className="inline-flex h-12 w-12 shrink-0 items-center justify-center text-amber-600 transition-transform duration-700 ease-out group-hover:rotate-[8deg] group-hover:scale-110"
   >
-    {paths.map((d) => (
-      <motion.path
-        key={d}
-        d={d}
-        stroke="currentColor"
-        strokeWidth={1.3}
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        variants={iconPath}
-      />
-    ))}
-  </svg>
+    <Icon className="h-9 w-9" />
+  </motion.span>
 );
 
 const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
@@ -135,7 +129,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
       <h3 className="font-heading text-[26px] font-bold leading-[1.1] tracking-tight text-neutral-900 transition-colors duration-500 group-hover:text-amber-600">
         {service.title}
       </h3>
-      <LineIcon paths={service.icon} />
+      <CardIcon icon={service.icon} />
     </div>
 
     {/* Divider: the amber line draws across on hover */}
@@ -143,22 +137,19 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
       <span className="absolute left-0 top-0 h-px w-0 bg-amber-600 transition-all duration-700 ease-out group-hover:w-full" />
     </div>
 
-    <p className="mt-6 text-[13.5px] leading-relaxed text-neutral-600">{service.description}</p>
+    <p className="mt-6 text-[13.5px] leading-relaxed text-neutral-600">
+      {service.description}
+    </p>
   </motion.article>
 );
 
-/* ------------------------------------------------------------------ */
-/*  Section                                                            */
-/* ------------------------------------------------------------------ */
 const About: React.FC = () => {
   return (
     <MotionConfig reducedMotion="user">
-      {/* id matches the Banner's scroll-down button (#next-section) */}
       <section
         id="next-section"
         className="relative scroll-mt-20 overflow-hidden bg-neutral-100 py-24 lg:py-32"
       >
-
         <div className="relative mx-auto max-w-[1500px] px-6 lg:px-14">
           {/* Intro: label | heading + text */}
           <motion.div
@@ -168,7 +159,7 @@ const About: React.FC = () => {
             className="grid gap-8 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-14"
           >
             <div className="relative">
-              {/* Hairlines like the reference: they cross at the label's corner */}
+              {/* Hairlines: they cross at the label's corner */}
               <span className="absolute -top-6 right-0 hidden h-px w-[420px] bg-gradient-to-l from-neutral-300 to-transparent lg:block" />
               <span className="absolute -top-6 right-0 hidden h-[300px] w-px bg-gradient-to-b from-neutral-300 to-transparent lg:block" />
 
@@ -184,11 +175,10 @@ const About: React.FC = () => {
             <div>
               <motion.h2
                 variants={headingGroup}
-                className="max-w-[820px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900 sm:text-5xl lg:text-[64px]"
+                className="max-w-[900px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900 sm:text-5xl lg:text-[64px]"
               >
                 {headingWords.map((w, i) => (
-                  <React.Fragment key={w.text}>
-                    {/* Extra padding keeps descenders (g, y, p) from being clipped by the mask */}
+                  <React.Fragment key={`${w.text}-${i}`}>
                     <span className="inline-block overflow-hidden align-bottom -mt-[0.1em] pt-[0.1em] -mb-[0.22em] pb-[0.22em]">
                       <motion.span
                         variants={wordReveal}
@@ -204,10 +194,11 @@ const About: React.FC = () => {
 
               <motion.p
                 variants={textReveal}
-                className="mt-8 max-w-[480px] text-[15px] leading-relaxed text-neutral-600"
+                className="mt-8 max-w-[560px] text-[15px] leading-relaxed text-neutral-600"
               >
-                We specialize in transforming visions into reality. Explore our portfolio of
-                innovative architectural and interior design projects crafted with precision.
+                At RealtyCults, we make property decisions simpler. From finding the right
+                residential plot to identifying promising investment opportunities, we help you
+                make informed real estate choices with confidence.
               </motion.p>
             </div>
           </motion.div>
@@ -218,7 +209,7 @@ const About: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
-            className="mt-16 grid gap-5 sm:grid-cols-2 lg:mt-20 xl:grid-cols-4"
+            className="mt-16 grid gap-5 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3"
           >
             {services.map((s) => (
               <ServiceCard key={s.title} service={s} />

@@ -18,9 +18,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-/* ------------------------------------------------------------------ */
-/*  Tokens                                                             */
-/* ------------------------------------------------------------------ */
+
 const AUTOPLAY_MS = 6500;
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -33,26 +31,23 @@ interface Slide {
   stat: { value: number; label: string };
 }
 
-/* Tip: load "Plus Jakarta Sans" or "Urbanist" with next/font and apply it
-   to the page body so the headline gets the same geometric feel as RealtyCults. */
-
 const slides: Slide[] = [
   {
     id: 1,
     label: "Fast and reliable",
-    lines: ["The Art of Stunning", "Interior Design"],
+    lines: ["Creating Spaces That Feel Like Home"],
     description:
-      "Whether it's your home, office, or a commercial project, we are always dedicated to bringing your vision to life.",
+      "From residential properties to commercial spaces, we help you find the right property to match your needs, preferences and future plans.",
     image:
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop",
     stat: { value: 260, label: "Successful Projects And Counting" },
   },
   {
     id: 2,
-    label: "Modern architecture",
-    lines: ["Crafting Spaces", "That Define Elegance"],
+    label: "Best Property",
+    lines: ["Property Opportunities With Purpose"],
     description:
-      "We turn raw blueprints into architecture with premium finishes and detail-oriented planning from first sketch to handover.",
+      "We focus on identifying suitable residential plots, agricultural land and investment opportunities through clear information and personalised guidance.",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
     stat: { value: 18, label: "Design Awards Won" },
@@ -60,9 +55,9 @@ const slides: Slide[] = [
   {
     id: 3,
     label: "Timeless luxury",
-    lines: ["Redefining Urban", "Living & Studios"],
+    lines: ["Making Property Decisions Simpler"],
     description:
-      "Modular layouts, luxury interiors and 3D walkthroughs, tailored to the way you live and work.",
+      "Whether you are buying, selling or investing, we provide assistance at every step to help you make informed and confident property decisions.",
     image:
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop",
     stat: { value: 12, label: "Years Of Studio Experience" },
@@ -139,8 +134,7 @@ const Banner: React.FC = () => {
   const slide = slides[active];
   const next = slides[(active + 1) % slides.length];
 
-  /* Autoplay without Swiper's Autoplay module: that module reads `new Date()` while the page is
-     prerendered, which Cache Components rejects. One timer per slide keeps the progress bar in sync. */
+ 
   useEffect(() => {
     if (reduce) return;
     const t = window.setTimeout(() => swiperRef.current?.slideNext(), AUTOPLAY_MS);

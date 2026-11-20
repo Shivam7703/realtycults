@@ -28,7 +28,7 @@ const pillars: Pillar[] = [
     image:
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1600&auto=format&fit=crop",
     summary:
-      "To deliver thoughtfully designed homes with honest advice, transparent pricing and craftsmanship that stands the test of time, so every family can move in with confidence.",
+      "Our mission is to simplify property decisions by connecting buyers with suitable real estate opportunities. We aim to provide clear information, personalized guidance, and dependable support throughout the property search process.",
   },
   {
     id: "vision",
@@ -38,7 +38,7 @@ const pillars: Pillar[] = [
     image:
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
     summary:
-      "To be the most trusted name in homes and living spaces, known for design that improves the way people live and communities that grow better with time.",
+      "Our vision is to become a trusted name in real estate by building lasting relationships, promoting transparent practices and helping people make confident property decisions.",
   },
   {
     id: "values",
@@ -48,10 +48,10 @@ const pillars: Pillar[] = [
     image:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1600&auto=format&fit=crop",
     values: [
-      { title: "Integrity", text: "We say what we mean and do what we promise." },
-      { title: "Transparency", text: "Clear costs, clear timelines, no surprises." },
-      { title: "Craftsmanship", text: "Quality in every material and every detail." },
-      { title: "Care", text: "Your home and your trust come first, always." },
+      { title: "Integrity", text: "We believe in honest dealings and responsible property guidance." },
+      { title: "Transparency", text: "We share clear information about property details, pricing and available opportunities." },
+      { title: "Commitment", text: "We focus on understanding your requirements and helping you make informed decisions." },
+      { title: "Customer Care", text: "Your property goals matter to us. We aim to make every step of your property journey easier." },
     ],
   },
 ];

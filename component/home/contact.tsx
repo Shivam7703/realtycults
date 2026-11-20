@@ -29,16 +29,16 @@ const projectOptions = ["Arvind", "Godrej", "Fortesia", "River Wood", "Not sure 
 
 const headingWords: { text: string; accent?: boolean }[] = [
   { text: "Let’s" },
-  { text: "Talk" },
-  { text: "About" },
-  { text: "Your", accent: true },
-  { text: "Next", accent: true },
-  { text: "Project", accent: true },
+  { text: "Find" },
+  { text: "The" },
+  { text: "Right", accent: true },
+  { text: "Property", accent: true },
+  { text: "For" },
+  { text: "Your" },
+  { text: "Goals" },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Form logic                                                         */
-/* ------------------------------------------------------------------ */
+
 interface FormValues {
   name: string;
   email: string;
@@ -180,9 +180,7 @@ const ContactRow: React.FC<{ item: ContactItem }> = ({ item }) => {
   );
 };
 
-/* ------------------------------------------------------------------ */
-/*  Section                                                            */
-/* ------------------------------------------------------------------ */
+
 const Contact: React.FC = () => {
   const [values, setValues] = useState<FormValues>(emptyValues);
   const [errors, setErrors] = useState<Errors>({});
@@ -299,8 +297,7 @@ const Contact: React.FC = () => {
               variants={fadeUp}
               className="mt-8 max-w-[460px] text-[15px] leading-relaxed text-neutral-600"
             >
-              Have a question, want to book a site visit, or ready to get started? Share a few
-              details and our team will get back to you within one working day.
+            Looking for residential plots, agricultural land or real estate investment opportunities? Connect with our team to discuss your requirements, understand available options and take the next step towards your property goals.
             </motion.p>
 
             <ul className="mt-10 max-w-[520px] border-b border-neutral-200">

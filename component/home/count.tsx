@@ -30,39 +30,38 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    from: 1990,
-    value: 2013,
-    title: "Year Established",
-    description: "Improving homes with expert craftsmanship for years.",
+    value: 13,
+    suffix: "+",
+    title: "Years of Experience",
+    description: "Building knowledge and understanding of the real estate market.",
   },
   {
     value: 190,
     suffix: "+",
-    title: "Projects Completed",
-    description: "Over 250 successful projects delivered with quality and care.",
+    title: "Property Opportunities",
+    description: "Connecting clients with residential and agricultural property options.",
   },
   {
     value: 260,
     suffix: "+",
-    title: "Skilled Tradespeople",
-    description: "Our team of 30 experts ensures top-quality results.",
+    title: "Happy Clients",
+    description: "Building lasting relationships through dedicated assistance and support.",
   },
   {
-    value: 328,
+    value: 330,
     suffix: "+",
-    title: "Client Satisfaction",
-    description: "All of our clients are satisfied with our work and service.",
+    title: "Locations Served",
+    description: "Helping clients explore property opportunities across different locations.",
   },
 ];
 
 const headingWords: { text: string; accent?: boolean }[] = [
-  { text: "Behind" },
-  { text: "Every", accent: true },
-  { text: "Statistic", accent: true },
-  { text: "Pulses", accent: true },
-  { text: "A" },
-  { text: "Human" },
-  { text: "Story" },
+  { text: "Growing" },
+  { text: "Through" },
+  { text: "Trust,", accent: true },
+  { text: "Relationships", accent: true },
+  { text: "&" },
+  { text: "Opportunities" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -182,12 +181,12 @@ const Counter: React.FC = () => {
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
-            Trusted experience
+            Our journey
           </motion.span>
 
           <motion.h2
             variants={headingGroup}
-            className="mt-7 max-w-[620px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-[60px]"
+            className="mt-7 max-w-[760px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-[60px]"
           >
             {headingWords.map((w, i) => (
               <React.Fragment key={`${w.text}-${i}`}>
@@ -204,6 +203,15 @@ const Counter: React.FC = () => {
               </React.Fragment>
             ))}
           </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-8 max-w-[560px] text-[15px] leading-relaxed text-white/70"
+          >
+            Every property enquiry represents a goal, a plan or an investment decision. At
+            RealtyCults, we value the relationships we build and remain committed to helping
+            clients move forward with informed property choices.
+          </motion.p>
         </motion.div>
 
         {/* Stats */}

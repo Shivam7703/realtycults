@@ -158,8 +158,7 @@ const ContactLine: React.FC<{
 /*  Footer                                                             */
 /* ------------------------------------------------------------------ */
 const Footer: React.FC = () => {
-    // Cache Components forbids reading the current time during prerender, so start from a fixed
-    // year (same on server and browser, no hydration mismatch) and update it once in the browser.
+   
     const [year, setYear] = useState(2026);
     useEffect(() => {
         setYear(new Date().getFullYear());
@@ -221,8 +220,7 @@ const Footer: React.FC = () => {
                         <motion.div variants={fadeUp}>
                             <Logo />
                             <p className="mt-6 max-w-[340px] text-[14.5px] leading-relaxed text-white/65">
-                                Thoughtfully made homes and spaces, designed with care and delivered with
-                                transparency from the first conversation to the final handover.
+                               RealtyCults helps you find suitable property opportunities, from residential plots to agricultural land and real estate investments. We focus on clear communication, personalized guidance, and informed property decisions.
                             </p>
 
                             <ul className="mt-8 flex items-center gap-3" aria-label="Social media">

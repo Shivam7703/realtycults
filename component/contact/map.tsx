@@ -26,9 +26,7 @@ const headingWords: { text: string; accent?: boolean }[] = [
   { text: "Message", accent: true },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Motion                                                             */
-/* ------------------------------------------------------------------ */
+
 const headingGroup: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.07 } },
@@ -123,8 +121,8 @@ const ContactMap: React.FC = () => {
                 variants={fadeUp}
                 className="mt-8 max-w-[520px] text-[15px] leading-relaxed text-neutral-600"
               >
-                Drop by our office or share a few details and our team will get back to you within
-                one working day.
+               Have a property enquiry or need more information about available opportunities? Get in touch with RealtyCults through a call, email or contact form. Our team will be happy to assist you.
+
               </motion.p>
             </div>
           </motion.div>

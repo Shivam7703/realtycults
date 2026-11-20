@@ -81,12 +81,13 @@ const projects: Project[] = [
 ];
 
 const headingWords: { text: string; accent?: boolean }[] = [
-  { text: "Mixing" },
+  { text: "Combining" },
   { text: "Smart", accent: true },
-  { text: "Ideas", accent: true },
-  { text: "with" },
-  { text: "Creative" },
-  { text: "Designs" },
+  { text: "Property", accent: true },
+  { text: "Choices" },
+  { text: "With" },
+  { text: "Meaningful" },
+  { text: "Opportunities" },
 ];
 
 const CARD_TOP = 96; // px: where the first card sticks (clears the fixed header)
@@ -252,13 +253,13 @@ const Projects: React.FC = () => {
                 variants={fadeUp}
                 className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-amber-600"
               >
-                Our projects
+OUR PROJECTS
               </motion.p>
 
               <motion.h2
                 id="projects-title"
                 variants={headingGroup}
-                className="mt-5 max-w-[520px] font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.01em] sm:text-5xl lg:text-[56px]"
+                className="mt-5 max-w-[720px] font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.01em] sm:text-5xl "
               >
                 {headingWords.map((w, i) => (
                   <React.Fragment key={`${w.text}-${i}`}>
@@ -278,16 +279,15 @@ const Projects: React.FC = () => {
 
               <motion.span
                 variants={ruleDraw}
-                className="mt-12 block h-px w-full max-w-[440px] origin-left bg-white/25"
+                className="mt-12 block h-px w-full max-w-[640px] origin-left bg-white/25"
               />
 
               <motion.p
                 variants={fadeUp}
-                className="mt-8 max-w-[440px] text-sm leading-relaxed text-white/70"
+                className="mt-8 max-w-[640px] text-sm leading-relaxed text-white/70"
               >
-                Our approach stands on individual and distinct designs to develop functional spaces
-                that meet both aesthetic and operational needs. Careful planning determines
-                everything we do to achieve functional and attractive spaces.
+               At RealtyCults, we believe every property decision deserves careful thought and the right guidance. Our approach focuses on understanding individual requirements, identifying suitable opportunities and helping clients make informed choices. From residential plots to agricultural land and real estate investments, we aim to make every property journey simple, transparent and rewarding.
+
               </motion.p>
 
               <motion.div variants={fadeUp} className="mt-10">

@@ -22,50 +22,50 @@ interface Post {
 
 const posts: Post[] = [
   {
-    slug: "things-to-check-before-booking-an-apartment",
-    category: "Buying Guide",
+    slug: "things-to-check-before-buying-a-residential-plot",
+    category: "Property Buying Guide",
     author: "Admin",
     date: "2026-10-12",
-    title: "Five Things To Check Before Booking Your First Apartment",
+    title: "Five Important Things To Check Before Buying A Residential Plot",
     excerpt:
-      "Buying a home is a big decision. From approvals and layout to builder track record, here is a simple checklist to review before you commit…",
+      "Buying a residential plot requires careful planning. From location and legal documents to development plans and pricing, understand the important factors before making your property decision.",
     image:
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1600&auto=format&fit=crop",
   },
   {
-    slug: "smart-layouts-for-compact-homes",
-    category: "Home Design",
+    slug: "how-to-identify-the-right-location-for-property-investment",
+    category: "Real Estate Insights",
     author: "Admin",
     date: "2026-09-28",
-    title: "Smart Layouts That Make Compact Homes Feel Spacious",
+    title: "How To Identify The Right Location For Your Property Investment",
     excerpt:
-      "Good planning can make a modest floor plan feel generous. Learn how light, storage and flow change the way a small home lives…",
+      "Location plays an important role in property decisions. Learn how connectivity, infrastructure, surrounding development and future growth prospects can influence your investment choices.",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop",
   },
   {
-    slug: "move-in-ready-interiors-on-a-budget",
-    category: "Interior Tips",
+    slug: "what-to-know-before-investing-in-agricultural-land",
+    category: "Agricultural Land",
     author: "Admin",
     date: "2026-09-10",
-    title: "How To Plan A Move-In Ready Interior On A Budget",
+    title: "What To Know Before Investing In Agricultural Land",
     excerpt:
-      "You do not need to overspend to get a polished home. Here is how to prioritise, phase the work and avoid the common budget traps…",
+      "Agricultural land can offer different ownership and usage opportunities. Understand land records, permitted usage, accessibility and local regulations before making a purchase decision.",
     image:
       "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1600&auto=format&fit=crop",
   },
 ];
 
 const headingWords: { text: string; accent?: boolean }[] = [
-  { text: "Take" },
-  { text: "A" },
-  { text: "Look" },
-  { text: "At" },
-  { text: "Our", accent: true },
-  { text: "Latest", accent: true },
-  { text: "Blog", accent: true },
-  { text: "&" },
-  { text: "Articles." },
+  { text: "Insights", accent: true },
+  { text: "&", accent: true },
+  { text: "Updates", accent: true },
+  { text: "From" },
+  { text: "The" },
+  { text: "World" },
+  { text: "Of" },
+  { text: "Real" },
+  { text: "Estate" },
 ];
 
 const formatDate = (iso: string): string =>
@@ -75,9 +75,7 @@ const formatDate = (iso: string): string =>
     year: "numeric",
   });
 
-/* ------------------------------------------------------------------ */
-/*  Motion                                                             */
-/* ------------------------------------------------------------------ */
+
 const headingGroup: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.06 } },
@@ -207,7 +205,7 @@ const Blog: React.FC = () => {
                 className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-neutral-800"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
-                Straight from the newsroom
+                Latest Articles
               </motion.span>
             </div>
 

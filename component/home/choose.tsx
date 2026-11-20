@@ -17,30 +17,30 @@ interface Reason {
 
 const reasons: Reason[] = [
   {
-    title: "Design Led Approach",
+    title: "Personalised Property Guidance",
     description:
-      "Every plan starts with how you live, so layouts, light and finishes feel right for you.",
+      "We understand your requirements, budget and preferences to help you identify suitable property options.",
     image:
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop",
   },
   {
-    title: "Transparent Pricing",
+    title: "Transparent Communication",
     description:
-      "Clear budgets and timelines from day one, with no hidden surprises along the way.",
+      "We provide clear information about property details, pricing and available opportunities to support informed decisions.",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
   },
   {
-    title: "Quality Craftsmanship",
+    title: "Diverse Property Opportunities",
     description:
-      "Carefully selected materials and trusted contractors keep standards high on every site.",
+      "From residential plots to agricultural land, we help you explore different real estate options.",
     image:
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop",
   },
   {
-    title: "Dedicated Support",
+    title: "Dedicated Customer Support",
     description:
-      "One point of contact guides you through handover and stays with you long after.",
+      "Our team assists you throughout your property journey, from the initial enquiry to the next steps.",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop",
   },
@@ -49,10 +49,11 @@ const reasons: Reason[] = [
 const headingWords: { text: string; accent?: boolean }[] = [
   { text: "Why" },
   { text: "Choose", accent: true },
-  { text: "Us", accent: true },
+  { text: "RealtyCults", accent: true },
   { text: "For" },
-  { text: "Exceptional" },
-  { text: "Results" },
+  { text: "Your" },
+  { text: "Property" },
+  { text: "Needs" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -138,7 +139,7 @@ const WhyChooseUs: React.FC = () => {
               <motion.h2
                 id="why-title"
                 variants={headingGroup}
-                className="max-w-[820px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900 sm:text-5xl lg:text-[64px]"
+                className="max-w-[900px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900 sm:text-5xl lg:text-[64px]"
               >
                 {headingWords.map((w, i) => (
                   <React.Fragment key={`${w.text}-${i}`}>
@@ -158,10 +159,12 @@ const WhyChooseUs: React.FC = () => {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-8 max-w-[520px] text-[15px] leading-relaxed text-neutral-600"
+                className="mt-8 max-w-[620px] text-[15px] leading-relaxed text-neutral-600"
               >
-                We combine honest advice, careful craftsmanship and clear communication, so every
-                project feels considered from the first conversation to the final handover.
+                We believe every property decision should be backed by the right information,
+                transparent communication and dependable assistance. Our focus is to understand
+                your requirements and help you find property opportunities that align with your
+                goals.
               </motion.p>
             </div>
           </motion.div>
@@ -180,30 +183,30 @@ const WhyChooseUs: React.FC = () => {
                 variants={imageReveal}
                 className="absolute inset-0 overflow-hidden rounded-[28px] bg-neutral-300"
               >
-              {reasons.map((r, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={r.title}
-                  src={r.image}
-                  alt={i === active ? r.title : ""}
-                  aria-hidden={i !== active}
-                  className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out ${
-                    i === active ? "scale-100 opacity-100" : "scale-110 opacity-0"
-                  }`}
-                />
-              ))}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                {reasons.map((r, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={r.title}
+                    src={r.image}
+                    alt={i === active ? r.title : ""}
+                    aria-hidden={i !== active}
+                    className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out ${
+                      i === active ? "scale-100 opacity-100" : "scale-110 opacity-0"
+                    }`}
+                  />
+                ))}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-              {/* Caption chip follows the active reason */}
-              <div
-                className="absolute bottom-5 left-5 flex items-center gap-3 rounded-full border border-white/20 bg-black/30 py-2 pl-2 pr-5 text-white backdrop-blur-md"
-                aria-live="polite"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-600 text-xs font-bold">
-                  {String(active + 1).padStart(2, "0")}
-                </span>
-                <span className="text-[13px] font-semibold">{current.title}</span>
-              </div>
+                {/* Caption chip follows the active reason */}
+                <div
+                  className="absolute bottom-5 left-5 flex items-center gap-3 rounded-full border border-white/20 bg-black/30 py-2 pl-2 pr-5 text-white backdrop-blur-md"
+                  aria-live="polite"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-600 text-xs font-bold">
+                    {String(active + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[13px] font-semibold">{current.title}</span>
+                </div>
               </motion.div>
             </motion.div>
 
@@ -250,10 +253,10 @@ const WhyChooseUs: React.FC = () => {
                       </span>
 
                       <span className="flex-1">
-                        <span className="block font-heading text-[26px] font-bold leading-tight tracking-tight text-neutral-900 transition-transform duration-500 group-hover:translate-x-1 lg:text-[30px]">
+                        <span className="block font-heading text-[24px] font-bold leading-tight tracking-tight text-neutral-900 transition-transform duration-500 group-hover:translate-x-1 lg:text-[28px]">
                           {r.title}
                         </span>
-                        <span className="mt-2 block max-w-[340px] text-[13.5px] leading-relaxed text-neutral-600">
+                        <span className="mt-2 block max-w-[400px] text-[13.5px] leading-relaxed text-neutral-600">
                           {r.description}
                         </span>
                       </span>

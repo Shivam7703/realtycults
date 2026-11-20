@@ -69,12 +69,12 @@ const cards: Card[] = [
 ];
 
 const headingWords: { text: string; accent?: boolean }[] = [
-  { text: "We’d" },
-  { text: "Love" },
-  { text: "To" },
-  { text: "Hear", accent: true },
-  { text: "From", accent: true },
-  { text: "You", accent: true },
+  { text: "Let’s" },
+  { text: "Talk" },
+  { text: "About" },
+  { text: "Your", accent: true },
+  { text: "Property", accent: true },
+  { text: "Goals", accent: true },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -193,8 +193,8 @@ const ContactUs: React.FC = () => {
               variants={fadeUp}
               className="max-w-[420px] text-[15px] leading-relaxed text-neutral-600"
             >
-              Questions about a project, a site visit or a booking? Choose the way that suits you
-              best and our team will take it from there.
+              Looking for the right property or need guidance with your next investment? We're here to understand your requirements and help you take the next step.
+
             </motion.p>
           </motion.div>
 

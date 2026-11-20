@@ -8,19 +8,21 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import "swiper/css";
 
 /* ------------------------------------------------------------------ */
-/*  Content (replace the placeholder reviews with your real ones)      */
+/*  Content                                                            */
 /* ------------------------------------------------------------------ */
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-/** Paste your Google "write a review" link here */
+/** TODO: paste your Google "write a review" link here */
 const GOOGLE_REVIEW_URL = "https://g.page/r/YOUR_PLACE_ID/review";
 
+/** TODO: replace with your real Google rating */
 const SUMMARY = { rating: 4.9, count: 128 };
 
 interface Review {
+  /** TODO: replace with the real reviewer name */
   name: string;
   meta?: string;
-  time: string;
+  time?: string;
   rating: 1 | 2 | 3 | 4 | 5;
   text: string;
   /** avatar background (Tailwind class) */
@@ -29,70 +31,59 @@ interface Review {
 
 const reviews: Review[] = [
   {
-    name: "Ananya Rao",
-    meta: "Local Guide · 24 reviews",
-    time: "2 weeks ago",
+    name: "Client 1",
     rating: 5,
     color: "bg-indigo-600",
-    text: "We booked our apartment after just one site visit. The team was transparent about pricing, paperwork and timelines, and possession came exactly when they said it would. The finish quality is better than what we saw in the show flat.",
+    text: "I had a good experience with RealtyCults while looking for a suitable property. The team understood my requirements, shared relevant options and helped me make a well-informed decision. Their communication was clear, and the overall process was smooth. I appreciate their professional approach and support.",
   },
   {
-    name: "Rohit Menon",
-    meta: "11 reviews",
-    time: "a month ago",
+    name: "Client 2",
     rating: 5,
     color: "bg-teal-600",
-    text: "Very professional from the first call to handover. They answered every question patiently and followed up on every small request.",
+    text: "Finding the right residential plot can be confusing, but RealtyCults made the process much easier. They explained the available options, pricing and important details patiently. I liked that they focused on understanding my needs rather than rushing the decision. Overall, a very positive experience.",
   },
   {
-    name: "Sneha Iyer",
-    meta: "Local Guide · 67 reviews",
-    time: "a month ago",
+    name: "Client 3",
     rating: 5,
     color: "bg-rose-600",
-    text: "The layout is thoughtful and the common areas are well maintained. As a first-time buyer I was nervous about the loan and registration process, but their team walked me through every step. I would happily recommend them to family and friends looking for a home in Bengaluru.",
+    text: "I was exploring agricultural land investment opportunities and needed proper guidance. RealtyCults helped me understand different options and important factors to consider before making a decision. The team was approachable, responsive and helpful throughout the discussion. I would definitely recommend their services.",
   },
   {
-    name: "Karthik Subramanian",
-    time: "2 months ago",
-    rating: 4,
+    name: "Client 4",
+    rating: 5,
     color: "bg-purple-600",
-    text: "Good construction quality and a responsive team. A couple of snag items took a little time to close, but they were all fixed properly.",
+    text: "What I liked most about RealtyCults was their professional communication and attention to customer requirements. They provided useful property information and answered my questions without making things complicated. Their support helped me understand the buying process better. A reliable team to connect with for real estate assistance.",
   },
   {
-    name: "Meera Kapoor",
-    meta: "5 reviews",
-    time: "3 months ago",
+    name: "Client 5",
     rating: 5,
     color: "bg-sky-700",
-    text: "Honest, friendly and no pressure at all. They showed us three options within our budget and explained the trade-offs clearly. We love the natural light in our new home.",
+    text: "My experience with RealtyCults was quite satisfying. The team helped me shortlist properties according to my preferred location and budget. They were patient with my questions and provided the necessary information at every step. Their customer-focused approach made the entire experience comfortable.",
   },
   {
-    name: "Vikram Shetty",
-    meta: "Local Guide · 9 reviews",
-    time: "4 months ago",
+    name: "Client 6",
     rating: 5,
     color: "bg-emerald-700",
-    text: "From booking to key handover everything was smooth. The after-sales support has been just as good as the sales experience, which is rare. Our family has settled in beautifully and the neighbourhood is exactly what we hoped for.",
+    text: "I approached RealtyCults to understand property investment opportunities, and the discussion was genuinely helpful. They explained the importance of location, pricing and future considerations before making a property decision. I appreciate their transparent communication and willingness to guide customers properly.",
   },
   {
-    name: "Divya Nair",
-    time: "5 months ago",
+    name: "Client 7",
     rating: 5,
     color: "bg-orange-700",
-    text: "Great experience overall. Clear communication, quality materials and a team that actually listens.",
+    text: "RealtyCults made my property search more organised and convenient. From understanding my requirements to discussing suitable options, the team remained supportive and professional. Their guidance helped me compare different possibilities and make a more confident decision. A good experience overall.",
   },
 ];
 
 const headingWords: { text: string; accent?: boolean }[] = [
-  { text: "What" },
+  { text: "Stories" },
+  { text: "of" },
+  { text: "Trust", accent: true },
+  { text: "&", accent: true },
+  { text: "Satisfaction", accent: true },
+  { text: "That" },
+  { text: "Reflect" },
   { text: "Our" },
-  { text: "Clients", accent: true },
-  { text: "Say" },
-  { text: "About" },
-  { text: "Living", accent: true },
-  { text: "With", accent: true },
-  { text: "Us", accent: true },
+  { text: "Commitment" },
 ];
 
 const CLAMP_AT = 170; // characters; longer reviews get a "Read more" toggle
@@ -180,7 +171,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
 
       <div className="mt-4 flex items-center gap-2">
         <Stars rating={review.rating} />
-        <span className="text-xs text-neutral-500">{review.time}</span>
+        {review.time && <span className="text-xs text-neutral-500">{review.time}</span>}
       </div>
 
       <p
@@ -201,8 +192,6 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
           {open ? "Show less" : "Read more"}
         </button>
       )}
-
-      {/* <p className="mt-auto pt-5 text-[11px] text-neutral-400">Posted on Google</p> */}
     </article>
   );
 };
@@ -256,13 +245,13 @@ const Testimonials: React.FC = () => {
                 className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-800"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
-                Testimonials
+                Testimonial
               </motion.span>
 
               <motion.h2
                 id="testimonials-title"
                 variants={headingGroup}
-                className="mt-7 max-w-[760px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900 sm:text-5xl lg:text-[60px]"
+                className="mt-7 max-w-[820px] font-heading text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900 sm:text-5xl lg:text-[60px]"
               >
                 {headingWords.map((w, i) => (
                   <React.Fragment key={`${w.text}-${i}`}>
@@ -293,9 +282,6 @@ const Testimonials: React.FC = () => {
                   </span>
                   <Stars rating={SUMMARY.rating} className="h-[18px] w-[18px]" />
                 </div>
-                {/* <p className="mt-1.5 text-xs text-neutral-500">
-                  Based on {SUMMARY.count} Google reviews
-                </p> */}
               </div>
               <a
                 href={GOOGLE_REVIEW_URL}
@@ -341,8 +327,8 @@ const Testimonials: React.FC = () => {
               }}
               className="-my-4 py-4"
             >
-              {reviews.map((r) => (
-                <SwiperSlide key={r.name} style={{ height: "auto" }}>
+              {reviews.map((r, i) => (
+                <SwiperSlide key={`${r.name}-${i}`} style={{ height: "auto" }}>
                   <ReviewCard review={r} />
                 </SwiperSlide>
               ))}
@@ -357,9 +343,6 @@ const Testimonials: React.FC = () => {
               >
                 Write a review
               </a>
-              {/* <p className="hidden text-xs text-neutral-400 sm:block">
-                Reviews are shown from Google and shared with permission.
-              </p> */}
 
               <div className="flex items-center gap-3">
                 <NavButton label="Previous review" onClick={() => swiperRef.current?.slidePrev()}>
