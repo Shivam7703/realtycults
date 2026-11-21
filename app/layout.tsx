@@ -18,9 +18,20 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Realitycult | Room for life to happen",
+  title: {
+    default: "RealtyCults | Property & Real Estate Guidance in Delhi",
+    template: "%s | RealtyCults",
+  },
   description:
-    "Thoughtfully made homes in Bengaluru. Discover Realitycult residences, project updates, and a more considered way to live.",
+    "RealtyCults helps you find suitable property opportunities across Delhi and beyond—from residential plots and agricultural land to real estate investments.",
+  keywords: [
+    "RealtyCults",
+    "real estate Delhi",
+    "residential plots",
+    "agricultural land",
+    "property investment",
+    "Lajpat Nagar Delhi",
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
