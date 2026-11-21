@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { AnimatePresence, MotionConfig, motion, type Variants } from "framer-motion";
-import { ArrowUpRight, Check, ChevronDown, Clock, Loader2, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Loader2, Mail, MapPin, Phone } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
 /*  Content (edit contact details, projects list and endpoint here)    */
@@ -11,18 +11,45 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 /** The form POSTs JSON here. Create this route (or point it to your form service). */
 const ENDPOINT = "/api/contact";
 
+interface ContactEntry {
+  display: string;
+  href?: string;
+  external?: boolean;
+}
+
 interface ContactItem {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
-  value: string;
-  href?: string;
+  entries: ContactEntry[];
 }
 
+const ADDRESS_DISPLAY =
+  "C-26, 3rd Floor, Amar Colony, Market, Lajpat Nagar 4, New Delhi, Delhi 110024";
+const ADDRESS_URL =
+  "https://www.google.com/maps/place/Realtycults/@28.5625751,77.2442631,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce33b2b9969c9:0x6e85128f44f6356b!8m2!3d28.5625751!4d77.2442631!16s%2Fg%2F11zzpq00yt?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D";
+
 const contactItems: ContactItem[] = [
-  { icon: Phone, label: "Call us", value: "(+91) 123 678 900", href: "tel:+91123678900" },
-  { icon: Mail, label: "Email us", value: "hello@yourcompany.com", href: "mailto:hello@yourcompany.com" },
-  { icon: MapPin, label: "Visit us", value: "123 Business Avenue, Bengaluru, Karnataka 560001" },
-//   { icon: Clock, label: "Working hours", value: "Mon to Sat, 9:00 AM to 7:00 PM" },
+  {
+    icon: Phone,
+    label: "Call us",
+    entries: [
+      { display: "(+91) 9205999692", href: "tel:+919205999692" },
+      { display: "(+91) 9205999691", href: "tel:+919205999691" },
+    ],
+  },
+  {
+    icon: Mail,
+    label: "Email us",
+    entries: [
+      { display: "Info@realtycults.com", href: "mailto:Info@realtycults.com" },
+      { display: "Realtycults@gmail.com", href: "mailto:Realtycults@gmail.com" },
+    ],
+  },
+  {
+    icon: MapPin,
+    label: "Visit us",
+    entries: [{ display: ADDRESS_DISPLAY, href: ADDRESS_URL, external: true }],
+  },
 ];
 
 const projectOptions = ["Arvind", "Godrej", "Fortesia", "River Wood", "Not sure yet"];
@@ -37,7 +64,6 @@ const headingWords: { text: string; accent?: boolean }[] = [
   { text: "Your" },
   { text: "Goals" },
 ];
-
 
 interface FormValues {
   name: string;
@@ -148,38 +174,45 @@ const Field: React.FC<FieldProps> = ({ id, label, required, error, children }) =
 /* Left column row: icon circle turns amber on hover */
 const ContactRow: React.FC<{ item: ContactItem }> = ({ item }) => {
   const Icon = item.icon;
-  const body = (
-    <>
+
+  return (
+    <motion.li
+      variants={fadeUp}
+      className="group flex items-start gap-4 border-t border-neutral-200 py-5"
+    >
       <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-amber-600 transition-all duration-500 group-hover:scale-105 group-hover:bg-amber-600 group-hover:text-white">
         <Icon className="h-5 w-5" />
       </span>
-      <span className="min-w-0">
+      <span className="min-w-0 flex-1">
         <span className="block text-xs font-semibold uppercase tracking-wider text-neutral-500">
           {item.label}
         </span>
-        <span className="mt-1 block text-[15px] font-semibold leading-snug text-neutral-900 transition-colors duration-300 group-hover:text-amber-600">
-          {item.value}
+        <span className="mt-1 flex flex-col gap-1">
+          {item.entries.map((entry) =>
+            entry.href ? (
+              <a
+                key={entry.display}
+                href={entry.href}
+                target={entry.external ? "_blank" : undefined}
+                rel={entry.external ? "noopener noreferrer" : undefined}
+                className="break-words text-[15px] font-semibold leading-snug text-neutral-900 transition-colors duration-300 hover:text-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+              >
+                {entry.display}
+              </a>
+            ) : (
+              <span
+                key={entry.display}
+                className="break-words text-[15px] font-semibold leading-snug text-neutral-900"
+              >
+                {entry.display}
+              </span>
+            ),
+          )}
         </span>
       </span>
-    </>
-  );
-
-  const rowClass =
-    "group flex items-start gap-4 border-t border-neutral-200 py-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-amber-600";
-
-  return (
-    <motion.li variants={fadeUp}>
-      {item.href ? (
-        <a href={item.href} className={rowClass}>
-          {body}
-        </a>
-      ) : (
-        <div className={rowClass}>{body}</div>
-      )}
     </motion.li>
   );
 };
-
 
 const Contact: React.FC = () => {
   const [values, setValues] = useState<FormValues>(emptyValues);
@@ -297,7 +330,7 @@ const Contact: React.FC = () => {
               variants={fadeUp}
               className="mt-8 max-w-[460px] text-[15px] leading-relaxed text-neutral-600"
             >
-            Looking for residential plots, agricultural land or real estate investment opportunities? Connect with our team to discuss your requirements, understand available options and take the next step towards your property goals.
+              Looking for residential plots, agricultural land or real estate investment opportunities? Connect with our team to discuss your requirements, understand available options and take the next step towards your property goals.
             </motion.p>
 
             <ul className="mt-10 max-w-[520px] border-b border-neutral-200">
@@ -496,7 +529,7 @@ const Contact: React.FC = () => {
                     {status === "error" && (
                       <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                         Something went wrong and your message was not sent. Please try again, or call
-                        us on {contactItems[0].value}.
+                        us on {contactItems[0].entries[0].display}.
                       </p>
                     )}
                   </div>

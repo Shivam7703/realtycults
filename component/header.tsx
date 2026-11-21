@@ -39,8 +39,8 @@ const navItems: NavItem[] = [
   { name: "Contact Us", href: "/contact-us" },
 ];
 
-const PHONE_DISPLAY = "(+91) 123 678 900";
-const PHONE_HREF = "tel:+91123678900";
+const PHONE_DISPLAY = "(+91) 9205999692";
+const PHONE_HREF = "tel:+919205999692";
 
 /* ------------------------------------------------------------------ */
 /*  Small pieces                                                       */

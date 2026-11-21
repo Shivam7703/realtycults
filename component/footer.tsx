@@ -16,6 +16,11 @@ interface LinkItem {
     href: string;
 }
 
+interface ContactItem {
+    display: string;
+    href: string;
+}
+
 const quickLinks: LinkItem[] = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about-us" },
@@ -33,9 +38,20 @@ const projectLinks: LinkItem[] = [
 
 const legalLinks: LinkItem[] = [{ name: "Privacy Policy", href: "/privacy-policy" }];
 
-const PHONE = { display: "(+91) 123 678 900", href: "tel:+91123678900" };
-const EMAIL = { display: "hello@yourcompany.com", href: "mailto:hello@yourcompany.com" };
-const ADDRESS = "123 Business Avenue, Bengaluru, Karnataka 560001";
+const PHONE: ContactItem[] = [
+    { display: "(+91) 9205999692", href: "tel:+919205999692" },
+    { display: "(+91) 9205999691", href: "tel:+919205999691" },
+];
+
+const EMAIL: ContactItem[] = [
+    { display: "Info@realtycults.com", href: "mailto:Info@realtycults.com" },
+    { display: "Realtycults@gmail.com", href: "mailto:Realtycults@gmail.com" },
+];
+
+const ADDRESS = {
+    display: "C-26, 3rd Floor, Amar Colony, Market, Lajpat Nagar 4, New Delhi, Delhi 110024",
+    href: "https://www.google.com/maps/place/Realtycults/data=!4m2!3m1!1s0x0:0x6e85128f44f6356b?sa=X&ved=1t:2428&ictx=111",
+};
 
 /* Replace each href with your real profile */
 const socials: { name: string; href: string; icon: React.ReactNode }[] = [
@@ -131,34 +147,33 @@ const FooterLink: React.FC<{ item: LinkItem }> = ({ item }) => (
 
 const ContactLine: React.FC<{
     icon: React.ComponentType<{ className?: string }>;
-    href?: string;
-    children: React.ReactNode;
-}> = ({ icon: Icon, href, children }) => {
-    const inner = (
-        <>
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-amber-600 transition-all duration-500 group-hover:border-transparent group-hover:bg-amber-600 group-hover:text-white">
-                <Icon className="h-4 w-4" />
-            </span>
-            <span className="text-[14.5px] leading-snug text-white/70 transition-colors duration-300 group-hover:text-white">
-                {children}
-            </span>
-        </>
-    );
-    const cls = "group flex items-start gap-3";
-    return href ? (
-        <a href={href} className={`${cls} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-600`}>
-            {inner}
-        </a>
-    ) : (
-        <div className={cls}>{inner}</div>
-    );
-};
+    items: ContactItem[];
+    external?: boolean;
+}> = ({ icon: Icon, items, external }) => (
+    <div className="group flex items-start gap-3">
+        <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-amber-600 transition-all duration-500 group-hover:border-transparent group-hover:bg-amber-600 group-hover:text-white">
+            <Icon className="h-4 w-4" />
+        </span>
+        <div className="flex flex-col gap-1 text-[14.5px] leading-snug text-white/70">
+            {items.map((item) => (
+                <a
+                    key={item.href}
+                    href={item.href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-600"
+                >
+                    {item.display}
+                </a>
+            ))}
+        </div>
+    </div>
+);
 
 /* ------------------------------------------------------------------ */
 /*  Footer                                                             */
 /* ------------------------------------------------------------------ */
 const Footer: React.FC = () => {
-   
     const [year, setYear] = useState(2026);
     useEffect(() => {
         setYear(new Date().getFullYear());
@@ -220,7 +235,7 @@ const Footer: React.FC = () => {
                         <motion.div variants={fadeUp}>
                             <Logo />
                             <p className="mt-6 max-w-[340px] text-[14.5px] leading-relaxed text-white/65">
-                               RealtyCults helps you find suitable property opportunities, from residential plots to agricultural land and real estate investments. We focus on clear communication, personalized guidance, and informed property decisions.
+                                RealtyCults helps you find suitable property opportunities, from residential plots to agricultural land and real estate investments. We focus on clear communication, personalized guidance, and informed property decisions.
                             </p>
 
                             <ul className="mt-8 flex items-center gap-3" aria-label="Social media">
@@ -277,13 +292,9 @@ const Footer: React.FC = () => {
                         <motion.div variants={fadeUp}>
                             <ColumnTitle>Contact</ColumnTitle>
                             <div className="mt-6 flex flex-col gap-4">
-                                <ContactLine icon={Phone} href={PHONE.href}>
-                                    {PHONE.display}
-                                </ContactLine>
-                                <ContactLine icon={Mail} href={EMAIL.href}>
-                                    {EMAIL.display}
-                                </ContactLine>
-                                <ContactLine icon={MapPin}>{ADDRESS}</ContactLine>
+                                <ContactLine icon={Phone} items={PHONE} />
+                                <ContactLine icon={Mail} items={EMAIL} />
+                                <ContactLine icon={MapPin} items={[ADDRESS]} external />
                             </div>
                         </motion.div>
                     </motion.div>
