@@ -1,7 +1,10 @@
+import Globalbanner from '@/component/global/banner';
 import React from 'react';
 
 function Page() {
   return (
+    <> 
+     <Globalbanner title="Privacy Policy" slug="privacy-policy" />
     <main className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 text-slate-800">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-10 lg:p-12">
         {/* Header */}
@@ -274,6 +277,7 @@ function Page() {
         </div>
       </div>
     </main>
+    </>
   );
 }
 

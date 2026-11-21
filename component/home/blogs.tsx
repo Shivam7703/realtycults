@@ -4,10 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { MotionConfig, motion, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import {blogData as posts} from "@/data/blogdata";
 
-/* ------------------------------------------------------------------ */
-/*  Content (replace with your real posts)                             */
-/* ------------------------------------------------------------------ */
+
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 interface Post {
@@ -20,41 +19,6 @@ interface Post {
   image: string;
 }
 
-const posts: Post[] = [
-  {
-    slug: "things-to-check-before-buying-a-residential-plot",
-    category: "Property Buying Guide",
-    author: "Admin",
-    date: "2026-10-12",
-    title: "Five Important Things To Check Before Buying A Residential Plot",
-    excerpt:
-      "Buying a residential plot requires careful planning. From location and legal documents to development plans and pricing, understand the important factors before making your property decision.",
-    image:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1600&auto=format&fit=crop",
-  },
-  {
-    slug: "how-to-identify-the-right-location-for-property-investment",
-    category: "Real Estate Insights",
-    author: "Admin",
-    date: "2026-09-28",
-    title: "How To Identify The Right Location For Your Property Investment",
-    excerpt:
-      "Location plays an important role in property decisions. Learn how connectivity, infrastructure, surrounding development and future growth prospects can influence your investment choices.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop",
-  },
-  {
-    slug: "what-to-know-before-investing-in-agricultural-land",
-    category: "Agricultural Land",
-    author: "Admin",
-    date: "2026-09-10",
-    title: "What To Know Before Investing In Agricultural Land",
-    excerpt:
-      "Agricultural land can offer different ownership and usage opportunities. Understand land records, permitted usage, accessibility and local regulations before making a purchase decision.",
-    image:
-      "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1600&auto=format&fit=crop",
-  },
-];
 
 const headingWords: { text: string; accent?: boolean }[] = [
   { text: "Insights", accent: true },
